@@ -155,7 +155,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5YT-Tz-2Zc">
-                                <rect key="frame" x="40" y="69.999999999999986" width="334" height="178.66666666666663"/>
+                                <rect key="frame" x="40" y="70" width="334" height="198"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0j-PV-029">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="28.666666666666671"/>
@@ -164,20 +164,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a username so your friends can find you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdz-l0-MMn">
-                                        <rect key="frame" x="0.0" y="58.666666666666657" width="334" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="58.666666666666657" width="334" height="19.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GyB-h0-Mpl">
-                                        <rect key="frame" x="0.0" y="88.666666666666657" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="108" width="334" height="30"/>
                                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-qQ-zVK">
-                                        <rect key="frame" x="0.0" y="148.66666666666666" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="168" width="334" height="30"/>
                                         <color key="backgroundColor" red="0.26713529229164124" green="0.66520839929580688" blue="0.95198589563369751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Next">
@@ -190,7 +190,7 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Please follow others in order to see posts!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wpm-qm-5s7">
-                                <rect key="frame" x="40" y="256.66666666666669" width="334" height="12"/>
+                                <rect key="frame" x="40" y="276" width="334" height="12"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -230,7 +230,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5n-gR-Scc">
                                 <rect key="frame" x="0.0" y="49" width="414" height="687"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text" base64-UTF8="YES">
+                                <string key="text" base64-UTF8="YES">
 U3RhdGUgb2YgTmV3IFlvcmsHUmV2LsKgMTMzQTE4QQcHwqAHVEVSTVMgT0YgVVNFCkZVTklTVEEHBwpW
 ZXJzaW9uIERhdGU6IEF1Z3VzdCAyMywgMjAxNwpURVJNUyBPRiBVU0UgQUdSRUVNRU5UCgpUaGlzIFRl
 cm1zIG9mIFVzZSBBZ3JlZW1lbnQgKOKAnEFncmVlbWVudOKAnSkgY29uc3RpdHV0ZXMgYSBsZWdhbGx5
@@ -769,7 +769,7 @@ TkNFTCBUSElTIEFHUkVFTUVOVCwgV0lUSE9VVCBBTlkgUEVOQUxUWSBPUiBPQkxJR0FUSU9OLCBBVCBB
 TlkgVElNRSBQUklPUiBUTyBNSUROSUdIVCBPRiBDT01QQU5Z4oCZUyBUSElSRCBCVVNJTkVTUyBEQVkg
 Rk9MTE9XSU5HIFRIRSBEQVRFIE9GIFRISVMgQUdSRUVNRU5ULCBFWENMVURJTkcgU1VOREFZUyBBTkQg
 SE9MSURBWVMuwqAgVE8gQ0FOQ0VMLCBDQUxMIEEgQ09NUEFOWSA
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -813,7 +813,7 @@ SE9MSURBWVMuwqAgVE8gQ0FOQ0VMLCBDQUxMIEEgQ09NUEFOWSA
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1l-ZE-avD">
                                 <rect key="frame" x="0.0" y="49" width="414" height="687"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text" base64-UTF8="YES">
+                                <string key="text" base64-UTF8="YES">
 U3RhdGUgb2YgTmV3IFlvcmsHUmV2LsKgMTMzQzU3OQfCoAcHUFJJVkFDWSBQT0xJQ1kKRlVOSVNUQQcH
 wqAKVmVyc2lvbiBEYXRlOiBBdWd1c3QgMjMsIDIwMTcKwqAKR0VORVJBTArCoApGdW5pc3RhICjigJxG
 dW5pc3Rh4oCdIG9yIOKAnHdl4oCdIG9yIOKAnHVz4oCdIG9yIOKAnG91cuKAnSkgcmVzcGVjdHMgdGhl
@@ -1204,7 +1204,7 @@ ZWdhcmRpbmcgb3VyIFByaXZhY3kgUG9saWN5LCBwbGVhc2UgY29udGFjdCBvdXIgUHJpdmFjeSBPZmZp
 Y2VyIGF0OgrCoApGdW5pc3RhCkF0dG46IFByaXZhY3kgT2ZmaWNlcgpfX19fX19fX19fCl9fX19fX19f
 X18sIF9fX19fX19fX18gX19fX19fX19fXwpFbWFpbDogRGFxaXEubWFoZGlhMUBnbWFpbC5jb20KUGhv
 bmU6IF9fX19fX19fX18KwqAKA
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1238,7 +1238,7 @@ bmU6IF9fX19fX19fX18KwqAKA
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="B43-vY-Ku2" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NNm-7a-vgP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NNm-7a-vgP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

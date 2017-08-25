@@ -26,6 +26,11 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        updateCounts()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +53,28 @@ class ProfileViewController: UIViewController {
             let loginViewController = UIStoryboard.initialViewController(for: .login)
             self.view.window?.rootViewController = loginViewController
             self.view.window?.makeKeyAndVisible()
+        }
+        
+    }
+    
+    
+    func updateCounts() {
+        DatabaseReference.toLocation(.followers(uid: self.user.uid)).observeSingleEvent(of: .value) { (snapshot:DataSnapshot) in
+            DispatchQueue.main.async {
+                self.user.followerCount = Int(snapshot.childrenCount)
+                self.collectionView.reloadData()
+            }
+        }
+        DatabaseReference.toLocation(.following(uid: self.user.uid)).observeSingleEvent(of: .value) { (snapshot:DataSnapshot) in
+            DispatchQueue.main.async {
+                self.user.followingCount = Int(snapshot.childrenCount)
+                self.collectionView.reloadData()
+            }        }
+        DatabaseReference.toLocation(.posts(uid: self.user.uid)).observeSingleEvent(of: .value) { (snapshot:DataSnapshot) in
+            DispatchQueue.main.async {
+                self.user.postCount = Int(snapshot.childrenCount)
+                self.collectionView.reloadData()
+            }
         }
         
     }

@@ -25,7 +25,7 @@ class MGPaginationHelper<T : MGKeyed> {
     var state: MGPaginationState = .initial
     var lastObjectKey: String?
     
-    init(pageSize: UInt = 25, serviceMethod: @escaping (UInt, String?, @escaping (([T]) -> Void)) -> Void) {
+    init(pageSize: UInt = 100, serviceMethod: @escaping (UInt, String?, @escaping (([T]) -> Void)) -> Void) {
         self.pageSize = pageSize
         self.serviceMethod = serviceMethod
     }
