@@ -106,6 +106,16 @@ class HomeViewController: UIViewController {
                         
                         print("Delete case: mutableData.value = \(String(describing: mutableData.value))")
                         
+                        let postCountRef = DatabaseReference.toLocation(.postCount(uid: uid))
+                        postCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+                            let currentCount = mutableData.value as? Int ?? 0
+                            
+                            mutableData.value = currentCount - 1
+                            
+                            return TransactionResult.success(withValue: mutableData)
+                        })
+
+                        
                     } else {
                         print("Case not met. Either not equal to 2 or not able to cast as Integer type. The value of the casted in is \(mutableData.value as? Int)")
                     }
@@ -127,6 +137,16 @@ class HomeViewController: UIViewController {
                 
                 Database.database().reference().child("posts").child(uid).child(postKey!).removeValue()
                 
+//                let postCountRef = DatabaseReference.toLocation(.postCount(uid: uid))
+//                postCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+//                    let currentCount = mutableData.value as? Int ?? 0
+//                    
+//                    mutableData.value = currentCount - 1
+//                    
+//                    return TransactionResult.success(withValue: mutableData)
+//                })
+//
+                
                 let okAlert = UIAlertController(title: nil, message: "The post has been deleted.", preferredStyle: .alert)
                 okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
                 self.present(okAlert, animated: true)
@@ -134,20 +154,20 @@ class HomeViewController: UIViewController {
             
             alertController.addAction(flagAction)
             
+            
         }
         
         ///added1 aded me to show the block button
         if poster.uid != User.current.uid {
             let blockAction = UIAlertAction(title: "Block this User", style: .default) { _ in
                 
-                let currentUser = User.current
+                let currentUID = User.current.uid
                 
                 //  FollowService.unfollowUser(user: poster.uid )
                 
                 
-                UserService.block(myself: currentUser.uid, posterUID : poster.uid)
+                UserService.block(myself: currentUID, posterUID : poster.uid)
                 
-                let currentUID = User.current.uid
                 let followData = ["followers/\(uid)/\(currentUID)" : NSNull(),
                                   "following/\(currentUID)/\(uid)" : NSNull(),
                                   "followers/\(currentUID)/\(uid)" : NSNull(),
@@ -161,41 +181,39 @@ class HomeViewController: UIViewController {
                     
                 }
                 
-//                UserService.posts(for: poster, completion: { (posts) in
-//                    var unfollowData = [String : Any]()
-//                    let postsKeys = posts.flatMap { $0.key }
-//                    postsKeys.forEach {
-//                        unfollowData["timeline/\(currentUID)/\($0)"] = NSNull()
-//                    }
+                UserService.posts(for: poster, completion: { (posts) in
+                    var unfollowData = [String : Any]()
+                    let postsKeys = posts.flatMap { $0.key }
+                    postsKeys.forEach {
+                        unfollowData["timeline/\(currentUID)/\($0)"] = NSNull()
+                    }
+                    
+                    ref.updateChildValues(unfollowData, withCompletionBlock: { (error, ref) in
+                        if let error = error {
+                            assertionFailure(error.localizedDescription)
+                        }
+                        
+                    })
+                })
+                
+                
+                
+//                let followingCountRef = DatabaseReference.toLocation(.followingCount(uid: currentUID))
+//                followingCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+//                    let currentCount = mutableData.value as? Int ?? 0
+//                    mutableData.value = currentCount - 1
 //                    
-//                    ref.updateChildValues(unfollowData, withCompletionBlock: { (error, ref) in
-//                        if let error = error {
-//                            assertionFailure(error.localizedDescription)
-//                        }
-//                        
-//                    })
+//                    return TransactionResult.success(withValue: mutableData)
 //                })
 //                
-                
-                
-                let followingCountRef = DatabaseReference.toLocation(.followingCount(uid: currentUID))
-                followingCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-                    let currentCount = mutableData.value as? Int ?? 0
-                    mutableData.value = currentCount - 1
-                    
-                    return TransactionResult.success(withValue: mutableData)
-                })
-                
-                let followerCountRef = DatabaseReference.toLocation(.followerCount(uid: uid))
-                followerCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-                    let currentCount = mutableData.value as? Int ?? 0
-                    mutableData.value = currentCount - 1
-                    
-                    return TransactionResult.success(withValue: mutableData)
-                })
-                
-
-
+//                let followerCountRef = DatabaseReference.toLocation(.followerCount(uid: uid))
+//                followerCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+//                    let currentCount = mutableData.value as? Int ?? 0
+//                    mutableData.value = currentCount - 1
+//                    
+//                    return TransactionResult.success(withValue: mutableData)
+//                })
+//           
                 
                 let okAlert = UIAlertController(title: nil, message: "The user has been blocked.", preferredStyle: .alert)
                 okAlert.addAction(UIAlertAction(title: "Ok", style: .default))

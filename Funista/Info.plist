@@ -19,9 +19,11 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb186758478526371</string>
+				<string>fb261625931009841</string>
 			</array>
 		</dict>
 		<dict>
@@ -36,10 +38,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>261625931009841
-261625931009841
-261625931009841
-261625931009841</string>
+	<string>261625931009841</string>
 	<key>FacebookDisplayName</key>
 	<string>Funista</string>
 	<key>LSApplicationQueriesSchemes</key>

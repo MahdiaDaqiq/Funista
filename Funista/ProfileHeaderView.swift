@@ -23,7 +23,7 @@ class ProfileHeaderView: UICollectionReusableView {
         settingsButton.layer.borderWidth = 1
     }
     @IBAction func settingsClicked(_ sender: UIButton) {
-        delegate?.didTapSettingsButton(sender, on: self)
+        //delegate?.didTapSettingsButton(sender, on: self)
 
     }
     

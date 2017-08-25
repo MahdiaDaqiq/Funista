@@ -31,7 +31,11 @@ class ProfileViewController: UIViewController {
         
         user = user ?? User.current
         navigationItem.title = user.username
-        
+
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         profileHandle = UserService.observeProfile(for: user) { [unowned self] (ref, user, posts) in
             self.profileRef = ref
             self.user = user
@@ -41,8 +45,8 @@ class ProfileViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
-    
-    
+        
+        
         authHandle = Auth.auth().addStateDidChangeListener() { [unowned self] (auth, user) in
             guard user == nil else { return }
             
@@ -50,7 +54,6 @@ class ProfileViewController: UIViewController {
             self.view.window?.rootViewController = loginViewController
             self.view.window?.makeKeyAndVisible()
         }
-
     }
     
     deinit {

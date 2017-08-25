@@ -25,6 +25,20 @@ class User : NSObject {
 
     }
     
+    func updateCounts() {
+        DatabaseReference.toLocation(.followers(uid: self.uid)).observeSingleEvent(of: .value) { (snapshot:DataSnapshot) in
+            self.followerCount = Int(snapshot.childrenCount)
+        }
+        DatabaseReference.toLocation(.following(uid: self.uid)).observeSingleEvent(of: .value) { (snapshot:DataSnapshot) in
+            self.followingCount = Int(snapshot.childrenCount)
+        }
+        DatabaseReference.toLocation(.posts(uid: self.uid)).observeSingleEvent(of: .value) { (snapshot:DataSnapshot) in
+            self.postCount = Int(snapshot.childrenCount)
+        }
+        
+    }
+    
+    
     init?(snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? [String : Any],
             let username = dict[Constants.FirDB.username] as? String,
@@ -38,8 +52,11 @@ class User : NSObject {
         self.followerCount = followerCount
         self.followingCount = followingCount
         self.postCount = postCount
-        
+
         super.init()
+        
+        self.updateCounts()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,6 +68,8 @@ class User : NSObject {
         self.username = username
         
         super.init()
+        
+        self.updateCounts()
     }
     
     private static var _current: User?

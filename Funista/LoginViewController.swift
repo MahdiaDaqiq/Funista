@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginClicked(_ sender: Any) {
         guard let authUI = FUIAuth.defaultAuthUI()
             else { return }
+        print("login cliked")
         
         authUI.delegate = self
         
@@ -42,6 +43,27 @@ class LoginViewController: UIViewController {
         
         let authViewController = authUI.authViewController()
         present(authViewController, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 1
+        if let identifier = segue.identifier {
+            // 2
+            if identifier == "displayTerms" {
+                // 3
+                print("Transitioning to the Display Note View Controller")
+            } else if identifier == "displayPolicy" {
+                    // 3
+                    print("Transitioning to the Display Note View Controller")
+                }
+            }
+            
+            
+        }
+    
+    
+    @IBAction func unwindViewController(_ segue: UIStoryboardSegue) {
+        
     }
 
 }

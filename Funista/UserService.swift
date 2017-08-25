@@ -44,6 +44,7 @@ struct UserService {
         }
     }
     
+    
     static func posts(for user: User, completion: @escaping ([Post]) -> Void) {
         let ref = DatabaseReference.toLocation(.posts(uid: user.uid))
         ref.observeSingleEvent(of: .value, with: { (snapshot) in

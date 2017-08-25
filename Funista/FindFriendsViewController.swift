@@ -11,7 +11,7 @@ import UIKit
 class FindFriendsViewController: UIViewController {
     
     var users = [User]()
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,7 +31,7 @@ class FindFriendsViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.rowHeight = 71
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "doneFindFriends" {
@@ -43,7 +43,7 @@ class FindFriendsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
 }
 
 extension FindFriendsViewController: FindFriendsCellDelegate {
@@ -52,7 +52,7 @@ extension FindFriendsViewController: FindFriendsCellDelegate {
         
         followButton.isUserInteractionEnabled = false
         let followee = users[indexPath.row]
-
+        
         FollowService.setIsFollowing(!followee.isFollowed, fromCurrentUserTo: followee) { (success) in
             defer {
                 followButton.isUserInteractionEnabled = true
@@ -61,7 +61,9 @@ extension FindFriendsViewController: FindFriendsCellDelegate {
             guard success else { return }
             
             followee.isFollowed = !followee.isFollowed
-            self.tableView.reloadRows(at: [indexPath], with: .none)
+            // reloads view
+            self.tableView.reloadData()
+            //self.tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
 }
@@ -79,10 +81,19 @@ extension FindFriendsViewController: UITableViewDataSource {
         return cell
     }
     
+    
     func configure(cell: FindFriendsCell, atIndexPath indexPath: IndexPath) {
         let user = users[indexPath.row]
         
         cell.usernameLabel.text = user.username
         cell.followButton.isSelected = user.isFollowed
     }
+}
+
+extension FindFriendsViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
 }
