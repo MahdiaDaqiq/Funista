@@ -44,31 +44,32 @@ struct FollowService {
         let ref = DatabaseReference.toLocation(.root)
         ref.updateChildValues(followData) { (error, _) in
             if let error = error {
-                assertionFailure(error.localizedDescription)
+                print(error.localizedDescription)
                 success(false)
             }
             let dispatchGroup = DispatchGroup()
             
-            dispatchGroup.enter()
-            
-            let followingCountRef = DatabaseReference.toLocation(.followingCount(uid: currentUID))
-            followingCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-                let currentCount = mutableData.value as? Int ?? 0
-                mutableData.value = currentCount + 1
-                
-                return TransactionResult.success(withValue: mutableData)
-                dispatchGroup.leave()
-
-            })
-            
-            dispatchGroup.enter()
-            let followerCountRef = DatabaseReference.toLocation(.followerCount(uid: user.uid))
-            followerCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-                let currentCount = mutableData.value as? Int ?? 0
-                mutableData.value = currentCount + 1
-                dispatchGroup.leave()
-                return TransactionResult.success(withValue: mutableData)
-            })
+//            dispatchGroup.enter()
+//            
+//            let followingCountRef = DatabaseReference.toLocation(.followingCount(uid: currentUID))
+//            followingCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+//                let currentCount = mutableData.value as? Int ?? 0
+//                mutableData.value = currentCount + 1
+//                
+//                return TransactionResult.success(withValue: mutableData)
+//                dispatchGroup.leave()
+//
+//            })
+//            
+//            dispatchGroup.enter()
+//            let followerCountRef = DatabaseReference.toLocation(.followerCount(uid: user.uid))
+//            followerCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+//                let currentCount = mutableData.value as? Int ?? 0
+//                mutableData.value = currentCount + 1
+//                dispatchGroup.leave()
+//                return TransactionResult.success(withValue: mutableData)
+//            })
+//            
             
             dispatchGroup.enter()
             UserService.posts(for: user) { (posts) in
@@ -80,7 +81,7 @@ struct FollowService {
                 
                 ref.updateChildValues(followData, withCompletionBlock: { (error, ref) in
                     if let error = error {
-                        assertionFailure(error.localizedDescription)
+                        print(error.localizedDescription)
                     }
                     
                     dispatchGroup.leave()
@@ -101,7 +102,7 @@ struct FollowService {
         let ref = DatabaseReference.toLocation(.root)
         ref.updateChildValues(followData) { (error, ref) in
             if let error = error {
-                assertionFailure(error.localizedDescription)
+                print(error.localizedDescription)
                 return success(false)
             }
             
@@ -136,7 +137,7 @@ struct FollowService {
                 
                 ref.updateChildValues(unfollowData, withCompletionBlock: { (error, ref) in
                     if let error = error {
-                        assertionFailure(error.localizedDescription)
+                        print(error.localizedDescription)
                     }
                     dispatchGroup.leave()
                 })

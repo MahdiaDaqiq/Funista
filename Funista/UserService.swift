@@ -33,7 +33,7 @@ struct UserService {
         let ref = DatabaseReference.toLocation(.showUser(uid: firUser.uid))
         ref.setValue(userAttrs) { (error, ref) in
             if let error = error {
-                assertionFailure(error.localizedDescription)
+                print(error.localizedDescription)
                 return completion(nil)
             }
             

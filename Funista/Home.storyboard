@@ -51,6 +51,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.99215686274509807" green="0.99215686274509807" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Yvu-Sq-tHq" firstAttribute="top" secondItem="0Xj-Tr-zIz" secondAttribute="topMargin" id="3Ui-cq-T6E"/>
                                                 <constraint firstItem="Yvu-Sq-tHq" firstAttribute="leading" secondItem="0Xj-Tr-zIz" secondAttribute="leadingMargin" constant="15" id="Fbi-15-8pf"/>
@@ -71,15 +72,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="374.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2mK-0z-ant">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2mK-0z-ant">
+                                                    <rect key="frame" x="5" y="-1" width="367" height="375"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="2mK-0z-ant" secondAttribute="bottom" id="WhV-Uo-AN9"/>
-                                                <constraint firstItem="2mK-0z-ant" firstAttribute="top" secondItem="Wdr-8D-HTF" secondAttribute="top" id="XC1-ce-guD"/>
-                                                <constraint firstAttribute="trailing" secondItem="2mK-0z-ant" secondAttribute="trailing" id="v5I-Om-wM7"/>
-                                                <constraint firstItem="2mK-0z-ant" firstAttribute="leading" secondItem="Wdr-8D-HTF" secondAttribute="leading" id="xJ3-lt-VjH"/>
+                                                <constraint firstItem="2mK-0z-ant" firstAttribute="top" secondItem="Wdr-8D-HTF" secondAttribute="top" constant="-1" id="XC1-ce-guD"/>
+                                                <constraint firstAttribute="trailing" secondItem="2mK-0z-ant" secondAttribute="trailing" constant="3" id="v5I-Om-wM7"/>
+                                                <constraint firstItem="2mK-0z-ant" firstAttribute="leading" secondItem="Wdr-8D-HTF" secondAttribute="leading" constant="5" id="xJ3-lt-VjH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -173,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8SR-Wd-5Ss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1690.4000000000001" y="1259.8200899550227"/>
+            <point key="canvasLocation" x="-1690.5797101449277" y="1259.1032608695652"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aTj-2o-VOT">

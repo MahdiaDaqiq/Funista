@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD8E42561F4C737A00F65D4A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD8E42551F4C737A00F65D4A /* Info.plist */; };
-		CD8E42581F4CD08A00F65D4A /* terms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E42571F4CD08A00F65D4A /* terms.swift */; };
+		CD8E42581F4CD08A00F65D4A /* TermsAndPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E42571F4CD08A00F65D4A /* TermsAndPolicyViewController.swift */; };
 		CD8E425A1F4CEE8C00F65D4A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E42591F4CEE8C00F65D4A /* AuthService.swift */; };
 		CDEEEC231F41E413007C17E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEEEC221F41E413007C17E5 /* AppDelegate.swift */; };
 		CDEEEC361F41E4B6007C17E5 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEEEC351F41E4B6007C17E5 /* Chat.swift */; };
@@ -66,7 +66,7 @@
 		4EE7465FDE66514A648FD6A4 /* Pods-Funista.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Funista.release.xcconfig"; path = "Pods/Target Support Files/Pods-Funista/Pods-Funista.release.xcconfig"; sourceTree = "<group>"; };
 		7F05AA64A82EFF69F9E72061 /* Pods-Funista.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Funista.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Funista/Pods-Funista.debug.xcconfig"; sourceTree = "<group>"; };
 		CD8E42551F4C737A00F65D4A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD8E42571F4CD08A00F65D4A /* terms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = terms.swift; sourceTree = "<group>"; };
+		CD8E42571F4CD08A00F65D4A /* TermsAndPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndPolicyViewController.swift; sourceTree = "<group>"; };
 		CD8E42591F4CEE8C00F65D4A /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		CDEEEC1F1F41E413007C17E5 /* Funista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Funista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEEEC221F41E413007C17E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -216,7 +216,6 @@
 				CDEEEC421F41E5D4007C17E5 /* ProfileHeaderView.swift */,
 				CDEEEC401F41E5C1007C17E5 /* ChatListCell.swift */,
 				CDEEEC3E1F41E597007C17E5 /* NewChatUserCell.swift */,
-				CD8E42571F4CD08A00F65D4A /* terms.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -224,6 +223,7 @@
 		CDEEEC501F41E722007C17E5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CD8E42571F4CD08A00F65D4A /* TermsAndPolicyViewController.swift */,
 				CDEEEC611F41E7CC007C17E5 /* LoginViewController.swift */,
 				CDEEEC5F1F41E7C0007C17E5 /* CreateUsernameViewController.swift */,
 				CDEEEC5D1F41E7B2007C17E5 /* FindFriendsViewController.swift */,
@@ -456,7 +456,7 @@
 				CDEEEC8F1F41EA38007C17E5 /* StorageReference+Post.swift in Sources */,
 				CDEEEC3C1F41E54A007C17E5 /* User.swift in Sources */,
 				CDEEEC841F41E986007C17E5 /* MGPhotoHelper.swift in Sources */,
-				CD8E42581F4CD08A00F65D4A /* terms.swift in Sources */,
+				CD8E42581F4CD08A00F65D4A /* TermsAndPolicyViewController.swift in Sources */,
 				CDEEEC7B1F41E8F2007C17E5 /* StorageService.swift in Sources */,
 				CDEEEC431F41E5D4007C17E5 /* ProfileHeaderView.swift in Sources */,
 				CDEEEC581F41E788007C17E5 /* ProfileViewController.swift in Sources */,
@@ -597,7 +597,7 @@
 				DEVELOPMENT_TEAM = ZC5M787KJL;
 				INFOPLIST_FILE = Funista/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mdaqiq.Funista;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mdaqiq.Funista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -611,7 +611,7 @@
 				DEVELOPMENT_TEAM = ZC5M787KJL;
 				INFOPLIST_FILE = Funista/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mdaqiq.Funista;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mdaqiq.Funista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

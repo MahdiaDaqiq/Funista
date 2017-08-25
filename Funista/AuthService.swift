@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 import UIKit
 import FirebaseAuth
 
@@ -30,7 +31,7 @@ struct AuthService {
         do {
             try Auth.auth().signOut()
         } catch let error as NSError {
-            assertionFailure("Error signing out: \(error.localizedDescription)")
+            print("Error signing out: \(error.localizedDescription)")
         }
     }
     

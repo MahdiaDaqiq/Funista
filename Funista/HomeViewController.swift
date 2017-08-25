@@ -17,7 +17,11 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var posts = [Post]()
+    var posts = [Post]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     let refreshControl = UIRefreshControl()
     let timestampFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -34,6 +38,7 @@ class HomeViewController: UIViewController {
         reloadTimeline()
     }
     
+    
     func reloadTimeline() {
         self.paginationHelper.reloadData(completion: { [unowned self] (posts) in
             self.posts = posts
@@ -41,8 +46,7 @@ class HomeViewController: UIViewController {
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()
             }
-            
-            self.tableView.reloadData()
+
         })
     }
     
@@ -70,6 +74,8 @@ class HomeViewController: UIViewController {
         let poster = post.poster
         let postKey = post.key
         let uid = poster.uid
+        let rootRef = Database.database().reference()
+
         // 3
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -99,25 +105,33 @@ class HomeViewController: UIViewController {
                     let currentCount = mutableData.value as? Int ?? 0
                     mutableData.value = currentCount
                     
+                    
                     if mutableData.value as! Int >= 2 {
                         
                         // the post for falgiin I love u hadi I tried so hard. U r so smart good job!
                         Database.database().reference().child("posts").child(uid).child(postKey!).removeValue()
                         
                         print("Delete case: mutableData.value = \(String(describing: mutableData.value))")
-                        
-                        let postCountRef = DatabaseReference.toLocation(.postCount(uid: uid))
-                        postCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-                            let currentCount = mutableData.value as? Int ?? 0
+                       // addedforlastdar
+                        UserService.followers(for: poster) { (followerUIDs) in
                             
-                            mutableData.value = currentCount - 1
+                            var updatedData: [String : Any] = ["timeline/\(uid)/\(String(describing: postKey))" : NSNull()]
                             
-                            return TransactionResult.success(withValue: mutableData)
-                        })
+                            
+                            for uid in followerUIDs {
+                                updatedData["timeline/\(uid)/\(String(describing: postKey))"] = NSNull()
+                            }
+                            
+                            updatedData["posts/\(uid)/\(String(describing: postKey))"] = NSNull()
+                            
+                            rootRef.updateChildValues(updatedData)
+                            
+                        }
 
                         
+                        
                     } else {
-                        print("Case not met. Either not equal to 2 or not able to cast as Integer type. The value of the casted in is \(mutableData.value as? Int)")
+                        print("Case not met. Either not equal to 2 or not able to cast as Integer type. The value of the casted in is \(String(describing: mutableData.value as? Int))")
                     }
                     
                     mutableData.value = currentCount + 1
@@ -135,17 +149,24 @@ class HomeViewController: UIViewController {
         } else {
             let flagAction = UIAlertAction(title: "Delete post", style: .default) { _ in
                 
-                Database.database().reference().child("posts").child(uid).child(postKey!).removeValue()
+                // addedforlastdar
+                UserService.followers(for: poster) { (followerUIDs) in
+                    
+                    var updatedData: [String : Any] = ["timeline/\(uid)/\(String(describing: postKey))" : NSNull()]
+                    
+                    
+                    for uid in followerUIDs {
+                        updatedData["timeline/\(uid)/\(String(describing: postKey))"] = NSNull()
+                    }
+                    
+                    updatedData["posts/\(uid)/\(String(describing: postKey))"] = NSNull()
+                    
+                    rootRef.updateChildValues(updatedData)
+                    
+                }
+
                 
-//                let postCountRef = DatabaseReference.toLocation(.postCount(uid: uid))
-//                postCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-//                    let currentCount = mutableData.value as? Int ?? 0
-//                    
-//                    mutableData.value = currentCount - 1
-//                    
-//                    return TransactionResult.success(withValue: mutableData)
-//                })
-//
+                Database.database().reference().child("posts").child(uid).child(postKey!).removeValue()
                 
                 let okAlert = UIAlertController(title: nil, message: "The post has been deleted.", preferredStyle: .alert)
                 okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
@@ -176,7 +197,7 @@ class HomeViewController: UIViewController {
                 let ref = Database.database().reference()
                 ref.updateChildValues(followData) { (error, ref) in
                     if let error = error {
-                        assertionFailure(error.localizedDescription)
+                        print(error.localizedDescription)
                     }
                     
                 }
@@ -190,30 +211,12 @@ class HomeViewController: UIViewController {
                     
                     ref.updateChildValues(unfollowData, withCompletionBlock: { (error, ref) in
                         if let error = error {
-                            assertionFailure(error.localizedDescription)
+                            print(error.localizedDescription)
                         }
                         
                     })
                 })
                 
-                
-                
-//                let followingCountRef = DatabaseReference.toLocation(.followingCount(uid: currentUID))
-//                followingCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-//                    let currentCount = mutableData.value as? Int ?? 0
-//                    mutableData.value = currentCount - 1
-//                    
-//                    return TransactionResult.success(withValue: mutableData)
-//                })
-//                
-//                let followerCountRef = DatabaseReference.toLocation(.followerCount(uid: uid))
-//                followerCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-//                    let currentCount = mutableData.value as? Int ?? 0
-//                    mutableData.value = currentCount - 1
-//                    
-//                    return TransactionResult.success(withValue: mutableData)
-//                })
-//           
                 
                 let okAlert = UIAlertController(title: nil, message: "The user has been blocked.", preferredStyle: .alert)
                 okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
@@ -289,7 +292,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 self.posts.append(contentsOf: posts)
                 
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
                 }
             })
         }

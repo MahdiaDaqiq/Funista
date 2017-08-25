@@ -23,16 +23,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMK-ct-fHg">
-                                <rect key="frame" x="9" y="73" width="357" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Terms and Conditions">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="hr3-tq-7Rw" kind="show" id="aa2-UU-BFo"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkh-eQ-0PI">
                                 <rect key="frame" x="9" y="147" width="357" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,17 +44,27 @@
                                     <segue destination="yfe-JN-wyy" kind="show" id="l4D-D0-wjM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMK-ct-fHg">
+                                <rect key="frame" x="9" y="72" width="357" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Terms and Conditions">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="hr3-tq-7Rw" kind="show" id="aa2-UU-BFo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686274509807" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="gMK-ct-fHg" firstAttribute="top" secondItem="hFO-z1-rmL" secondAttribute="bottom" constant="9" id="2c4-3q-wTJ"/>
+                            <constraint firstItem="gMK-ct-fHg" firstAttribute="top" secondItem="hFO-z1-rmL" secondAttribute="bottom" constant="8" id="2c4-3q-wTJ"/>
                             <constraint firstItem="V93-Zp-3OL" firstAttribute="leading" secondItem="hkh-eQ-0PI" secondAttribute="leading" id="2sV-sn-0cm"/>
                             <constraint firstAttribute="trailing" secondItem="hkh-eQ-0PI" secondAttribute="trailing" constant="9" id="3kQ-6w-jsg"/>
                             <constraint firstItem="hkh-eQ-0PI" firstAttribute="top" secondItem="V93-Zp-3OL" secondAttribute="bottom" constant="7" id="7hA-ce-PfC"/>
                             <constraint firstAttribute="trailing" secondItem="gMK-ct-fHg" secondAttribute="trailing" constant="9" id="UZf-ff-0Xf"/>
                             <constraint firstItem="gMK-ct-fHg" firstAttribute="leading" secondItem="tPh-sB-YlT" secondAttribute="leading" constant="9" id="Y2q-iS-8C6"/>
                             <constraint firstItem="V93-Zp-3OL" firstAttribute="trailing" secondItem="hkh-eQ-0PI" secondAttribute="trailing" id="afI-E3-wz2"/>
-                            <constraint firstItem="V93-Zp-3OL" firstAttribute="top" secondItem="gMK-ct-fHg" secondAttribute="bottom" constant="7" id="bbp-F5-2uz"/>
+                            <constraint firstItem="V93-Zp-3OL" firstAttribute="top" secondItem="gMK-ct-fHg" secondAttribute="bottom" constant="8" id="bbp-F5-2uz"/>
                             <constraint firstItem="hkh-eQ-0PI" firstAttribute="leading" secondItem="tPh-sB-YlT" secondAttribute="leading" constant="9" id="uMy-bX-o7H"/>
                         </constraints>
                     </view>
@@ -93,7 +93,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ZS-DF-KOf">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text" base64-UTF8="YES">
+                                <string key="text" base64-UTF8="YES">
 U3RhdGUgb2YgTmV3IFlvcmsHUmV2LsKgMTMzQTE4QQcHwqAHVEVSTVMgT0YgVVNFCkZVTklTVEEHBwpW
 ZXJzaW9uIERhdGU6IEF1Z3VzdCAyMywgMjAxNwpURVJNUyBPRiBVU0UgQUdSRUVNRU5UCgpUaGlzIFRl
 cm1zIG9mIFVzZSBBZ3JlZW1lbnQgKOKAnEFncmVlbWVudOKAnSkgY29uc3RpdHV0ZXMgYSBsZWdhbGx5
@@ -913,7 +913,7 @@ NDAwICJSIiBTdHJlZXQsIFNhY3JhbWVudG8sIENhbGlmb3JuaWEgOTU4MTQgb3IgYnkgdGVsZXBob25l
 IGF0IDEtOTE2LTQ0NS0xMjU0LsKgCgpGdW5pc3RhCl9fX19fX19fX18KX19fX19fX19fXywgX19fX19f
 X19fXyBfX19fX19fX19fCkVtYWlsOiBkYXFpcS5tYWhkaWExQGdtYWlsLmNvbQpQaG9uZTogX19fX19f
 X19fXwrCoAoMA
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -946,7 +946,7 @@ X19fXwrCoAoMA
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppn-A2-ctU">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text" base64-UTF8="YES">
+                                <string key="text" base64-UTF8="YES">
 U3RhdGUgb2YgTmV3IFlvcmsHUmV2LsKgMTMzQzU3OQfCoAcHUFJJVkFDWSBQT0xJQ1kKRlVOSVNUQQcH
 wqAKVmVyc2lvbiBEYXRlOiBBdWd1c3QgMjMsIDIwMTcKwqAKR0VORVJBTArCoApGdW5pc3RhICjigJxG
 dW5pc3Rh4oCdIG9yIOKAnHdl4oCdIG9yIOKAnHVz4oCdIG9yIOKAnG91cuKAnSkgcmVzcGVjdHMgdGhl
@@ -1337,7 +1337,7 @@ ZWdhcmRpbmcgb3VyIFByaXZhY3kgUG9saWN5LCBwbGVhc2UgY29udGFjdCBvdXIgUHJpdmFjeSBPZmZp
 Y2VyIGF0OgrCoApGdW5pc3RhCkF0dG46IFByaXZhY3kgT2ZmaWNlcgpfX19fX19fX19fCl9fX19fX19f
 X18sIF9fX19fX19fX18gX19fX19fX19fXwpFbWFpbDogRGFxaXEubWFoZGlhMUBnbWFpbC5jb20KUGhv
 bmU6IF9fX19fX19fX18KwqAKA
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

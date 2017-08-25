@@ -43,7 +43,7 @@ struct ChatService {
         let rootRef = DatabaseReference.toLocation(.root)
         rootRef.updateChildValues(multiUpdateValue) { (error, ref) in
             if let error = error {
-                assertionFailure(error.localizedDescription)
+                print(error.localizedDescription)
                 return
             }
             
@@ -89,7 +89,7 @@ struct ChatService {
         let rootRef = DatabaseReference.toLocation(.root)
         rootRef.updateChildValues(multiUpdateValue, withCompletionBlock: { (error, ref) in
             if let error = error {
-                assertionFailure(error.localizedDescription)
+                print(error.localizedDescription)
                 success?(false)
                 return
             }

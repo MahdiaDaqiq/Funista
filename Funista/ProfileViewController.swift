@@ -31,11 +31,7 @@ class ProfileViewController: UIViewController {
         
         user = user ?? User.current
         navigationItem.title = user.username
-
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        
         profileHandle = UserService.observeProfile(for: user) { [unowned self] (ref, user, posts) in
             self.profileRef = ref
             self.user = user
@@ -46,7 +42,6 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        
         authHandle = Auth.auth().addStateDidChangeListener() { [unowned self] (auth, user) in
             guard user == nil else { return }
             
@@ -54,6 +49,7 @@ class ProfileViewController: UIViewController {
             self.view.window?.rootViewController = loginViewController
             self.view.window?.makeKeyAndVisible()
         }
+        
     }
     
     deinit {
@@ -63,8 +59,7 @@ class ProfileViewController: UIViewController {
         
         profileRef?.removeObserver(withHandle: profileHandle)
     }
-
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "displayFindFriends" {
@@ -149,7 +144,7 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
             do {
                 try Auth.auth().signOut()
             } catch let error as NSError {
-                assertionFailure("Error signing out: \(error.localizedDescription)")
+                print("Error signing out: \(error.localizedDescription)")
             }
         }
 

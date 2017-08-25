@@ -33,7 +33,7 @@ struct LikeService {
         let likesRef = Database.database().reference().child("postLikes").child(key).child(currentUID)
         likesRef.setValue(true) { (error, _) in
             if let error = error {
-                assertionFailure(error.localizedDescription)
+                print(error.localizedDescription)
                 return success(false)
             }
             
@@ -46,7 +46,7 @@ struct LikeService {
                 return TransactionResult.success(withValue: mutableData)
             }, andCompletionBlock: { (error, _, _) in
                 if let error = error {
-                    assertionFailure(error.localizedDescription)
+                    print(error.localizedDescription)
                     success(false)
                 } else {
                     success(true)
@@ -58,7 +58,7 @@ struct LikeService {
     
     static func isPostLiked(_ post: Post,  byCurrentUserWithCompletion completion: @escaping (Bool) -> Void) {
         guard let postKey = post.key else {
-            assertionFailure("Error: post must have key.")
+            print("Error: post must have key.")
             return completion(false)
         }
         
@@ -84,7 +84,7 @@ struct LikeService {
         let likesRef = Database.database().reference().child("postLikes").child(key).child(currentUID)
         likesRef.setValue(nil) { (error, _) in
             if let error = error {
-                assertionFailure(error.localizedDescription)
+                print(error.localizedDescription)
                 return success(false)
             }
             
@@ -97,7 +97,7 @@ struct LikeService {
                 return TransactionResult.success(withValue: mutableData)
             }, andCompletionBlock: { (error, _, _) in
                 if let error = error {
-                    assertionFailure(error.localizedDescription)
+                    print(error.localizedDescription)
                     success(false)
                 } else {
                     success(true)

@@ -170,14 +170,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GyB-h0-Mpl">
-                                        <rect key="frame" x="0.0" y="88.66666666666697" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="88.666666666666657" width="334" height="30"/>
                                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-qQ-zVK">
-                                        <rect key="frame" x="0.0" y="148.66666666666697" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="148.66666666666666" width="334" height="30"/>
                                         <color key="backgroundColor" red="0.26713529229164124" green="0.66520839929580688" blue="0.95198589563369751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Next">
@@ -189,11 +189,20 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Please follow others in order to see posts!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wpm-qm-5s7">
+                                <rect key="frame" x="40" y="256.66666666666669" width="334" height="12"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="5YT-Tz-2Zc" secondAttribute="trailing" constant="20" id="1l5-VN-ZzC"/>
+                            <constraint firstItem="Wpm-qm-5s7" firstAttribute="leading" secondItem="5YT-Tz-2Zc" secondAttribute="leading" id="J2t-Dg-yxW"/>
                             <constraint firstItem="5YT-Tz-2Zc" firstAttribute="top" secondItem="siz-2h-VE6" secondAttribute="bottom" constant="50" id="UpA-k0-32w"/>
+                            <constraint firstItem="Wpm-qm-5s7" firstAttribute="top" secondItem="5YT-Tz-2Zc" secondAttribute="bottom" constant="8" symbolic="YES" id="aPb-vD-dHx"/>
+                            <constraint firstItem="Wpm-qm-5s7" firstAttribute="trailing" secondItem="5YT-Tz-2Zc" secondAttribute="trailing" id="jK8-RU-LsR"/>
                             <constraint firstItem="5YT-Tz-2Zc" firstAttribute="leading" secondItem="7TY-ih-dgC" secondAttribute="leadingMargin" constant="20" id="riK-jt-6kT"/>
                         </constraints>
                     </view>
@@ -204,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78Q-xb-9Yc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3025" y="101"/>
+            <point key="canvasLocation" x="3024.6376811594205" y="100.2717391304348"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Nbf-gv-0lw">
