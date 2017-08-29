@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 class Terms: UIViewController {
     
+    @IBOutlet weak var contact: UIButton!
     @IBOutlet weak var policy: UIButton!
     @IBOutlet weak var terms: UIButton!
     
@@ -36,6 +37,10 @@ class Terms: UIViewController {
         terms.layer.cornerRadius = 6
         terms.layer.borderColor = UIColor.lightGray.cgColor
         terms.layer.borderWidth = 1
+        
+        contact.layer.cornerRadius = 6
+        contact.layer.borderColor = UIColor.lightGray.cgColor
+        contact.layer.borderWidth = 1
         
         policy.layer.cornerRadius = 6
         policy.layer.borderColor = UIColor.lightGray.cgColor

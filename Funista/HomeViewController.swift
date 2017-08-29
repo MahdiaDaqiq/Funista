@@ -63,8 +63,6 @@ class HomeViewController: UIViewController {
         tableView.addSubview(refreshControl)
     }
     
-    // flag 4 modified 6
-    // flag 4 modified 6
     func handleOptionsButtonTap(from cell: PostHeaderCell) {
         // 1
         guard let indexPath = tableView.indexPath(for: cell) else { return }
@@ -81,62 +79,60 @@ class HomeViewController: UIViewController {
         
         // 4
         if poster.uid != User.current.uid {
+            // flag
             let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
                 PostService.flag(post)
                 
-                /// addedflag
-                
                 let flaggedPostRef = Database.database().reference().child("flaggedPosts").child(postKey!)
-                
-                
-                // 3
                 let flaggedDict = ["image_url": post.imageURL,
                                    "poster_uid": post.poster.uid,
                                    "reporter_uid": User.current.uid]
                 
-                // 4
                 flaggedPostRef.updateChildValues(flaggedDict)
                 
-                // 5
                 let flagCountRef = flaggedPostRef.child("flag_count")
                 flagCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-                    
                     
                     let currentCount = mutableData.value as? Int ?? 0
                     mutableData.value = currentCount
                     
-                    
                     if mutableData.value as! Int >= 2 {
                         
-                        // the post for falgiin I love u hadi I tried so hard. U r so smart good job!
                         Database.database().reference().child("posts").child(uid).child(postKey!).removeValue()
                         
                         print("Delete case: mutableData.value = \(String(describing: mutableData.value))")
-                       // addedforlastdar
                         UserService.followers(for: poster) { (followerUIDs) in
                             
-                            var updatedData: [String : Any] = ["timeline/\(uid)/\(String(describing: postKey))" : NSNull()]
-                            
+                            var updatedData: [String : Any] = ["timeline/\(uid)/\(postKey!)" : NSNull()]
                             
                             for uid in followerUIDs {
-                                updatedData["timeline/\(uid)/\(String(describing: postKey))"] = NSNull()
+                                updatedData["timeline/\(uid)/\(postKey!)"] = NSNull()
                             }
                             
-                            updatedData["posts/\(uid)/\(String(describing: postKey))"] = NSNull()
+                            updatedData["posts/\(uid)/\(postKey!)"] = NSNull()
                             
                             rootRef.updateChildValues(updatedData)
                             
                         }
+                        DispatchQueue.main.async {
+                            self.reloadTimeline()
+
+                        }
 
                         
-                        
                     } else {
+                        // filter from timeline
+                        let blah = ["timeline/\(User.current.uid)/\(postKey!)" : NSNull()]
+                        
+                        rootRef.updateChildValues(blah, withCompletionBlock: { (error, _) in
+                            DispatchQueue.main.async {
+                                self.reloadTimeline()
+                            }
+                        })
                         print("Case not met. Either not equal to 2 or not able to cast as Integer type. The value of the casted in is \(String(describing: mutableData.value as? Int))")
                     }
                     
                     mutableData.value = currentCount + 1
-                    
-                    
                     return TransactionResult.success(withValue: mutableData)
                 })
                 
@@ -147,45 +143,37 @@ class HomeViewController: UIViewController {
             
             alertController.addAction(flagAction)
         } else {
+            // delete
             let flagAction = UIAlertAction(title: "Delete post", style: .default) { _ in
                 
-                // addedforlastdar
                 UserService.followers(for: poster) { (followerUIDs) in
-                    
-                    var updatedData: [String : Any] = ["timeline/\(uid)/\(String(describing: postKey))" : NSNull()]
-                    
-                    
+                    var updatedData: [String : Any] = ["timeline/\(uid)/\(postKey!)" : NSNull()]
                     for uid in followerUIDs {
-                        updatedData["timeline/\(uid)/\(String(describing: postKey))"] = NSNull()
+                        updatedData["timeline/\(uid)/\(postKey!)"] = NSNull()
                     }
-                    
-                    updatedData["posts/\(uid)/\(String(describing: postKey))"] = NSNull()
-                    
+                    updatedData["posts/\(uid)/\(postKey!)"] = NSNull()
                     rootRef.updateChildValues(updatedData)
-                    
                 }
-
                 
                 Database.database().reference().child("posts").child(uid).child(postKey!).removeValue()
-                
                 let okAlert = UIAlertController(title: nil, message: "The post has been deleted.", preferredStyle: .alert)
                 okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
                 self.present(okAlert, animated: true)
+                DispatchQueue.main.async {
+                    self.reloadTimeline()
+                    
+                }
             }
             
             alertController.addAction(flagAction)
             
             
         }
-        
-        ///added1 aded me to show the block button
+        // block
         if poster.uid != User.current.uid {
             let blockAction = UIAlertAction(title: "Block this User", style: .default) { _ in
                 
                 let currentUID = User.current.uid
-                
-                //  FollowService.unfollowUser(user: poster.uid )
-                
                 
                 UserService.block(myself: currentUID, posterUID : poster.uid)
                 
@@ -210,6 +198,10 @@ class HomeViewController: UIViewController {
                     }
                     
                     ref.updateChildValues(unfollowData, withCompletionBlock: { (error, ref) in
+                        DispatchQueue.main.async {
+                            self.reloadTimeline()
+                        }
+
                         if let error = error {
                             print(error.localizedDescription)
                         }
@@ -217,8 +209,33 @@ class HomeViewController: UIViewController {
                     })
                 })
                 
+                DispatchQueue.main.async {
+                    self.reloadTimeline()
+                }
                 
                 let okAlert = UIAlertController(title: nil, message: "The user has been blocked.", preferredStyle: .alert)
+                okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(okAlert, animated: true)
+                
+                
+            }
+            
+            alertController.addAction(blockAction)
+        }
+        
+        //filter
+        if poster.uid != User.current.uid {
+            let blockAction = UIAlertAction(title: "Filter this post", style: .default) { _ in
+                
+                let blah = ["timeline/\(User.current.uid)/\(postKey!)" : NSNull()]
+                
+                rootRef.updateChildValues(blah, withCompletionBlock: { (error, _) in
+                    DispatchQueue.main.async {
+                        self.reloadTimeline()
+                    }
+                })
+                
+                let okAlert = UIAlertController(title: nil, message: "The user has been filtered.", preferredStyle: .alert)
                 okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
                 self.present(okAlert, animated: true)
                 
@@ -228,11 +245,9 @@ class HomeViewController: UIViewController {
         }
         
         
-        // 5
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        // 6
         present(alertController, animated: true, completion: nil)
         
         

@@ -28,7 +28,22 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         updateCounts()
+        user = user ?? User.current
+        navigationItem.title = user.username
+        
+        profileHandle = UserService.observeProfile(for: user) { [unowned self] (ref, user, posts) in
+            self.profileRef = ref
+            self.user = user
+            self.posts = posts
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+
     }
+    
+    
     
     
     override func viewDidLoad() {
@@ -74,6 +89,7 @@ class ProfileViewController: UIViewController {
             DispatchQueue.main.async {
                 self.user.postCount = Int(snapshot.childrenCount)
                 self.collectionView.reloadData()
+
             }
         }
         
